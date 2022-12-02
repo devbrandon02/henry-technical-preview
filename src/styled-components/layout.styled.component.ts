@@ -14,6 +14,7 @@ export const MainContainer = styled.div`
   border-radius: 18px;
   height: 100%;
   overflow: auto;
+  display: flex;
 `
 
 export const SidebarLayout = styled.div`
@@ -30,31 +31,14 @@ export const FilterLayout = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #f9f9f9;
-  width: 35%;
+  width: 50%;
   padding: 30px;
   border-radius: 15px;
+  height: fit-content;
 `
 
-
-export const CardCategorys = styled.div`
-  display: flex;
-  background-color: #f9f9f9;
-  width: 100px;
-  height: 30px;
-  justify-content: center;
-  align-items: center;
-  border-radius: 15px;
-  border: 1px solid #dbd9da;
-  cursor: pointer;
-  gap: 8px;
-`
-
-export const CardCourses = styled.div`
+export const ContentCourseLayout = styled.div`
   background-color: white;
-  width: 95%;
-  height: 120px;
-  margin-top: 20px;
-  border-radius: 10px;
-  padding: 10px;
-  display: flex;
+  width: 100%;
+  height: fit-content;
 `

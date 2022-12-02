@@ -55,7 +55,7 @@ export const FilterCourses = () => {
 				</div>
 
         <div style={{ display: 'flex', marginTop: '15px', justifyContent: 'space-between', alignItems: 'center' }}>
-          <div style={{ display: 'flex', gap: '10px' }}>
+          <div style={{ display: 'flex', gap: '8px', fontSize: '12px' }}>
             { categorysCourses.map((category) => (
               <CardCategorys key={category.id}>
                 <img style={{width: '20px'}} src={category.image} alt="" />

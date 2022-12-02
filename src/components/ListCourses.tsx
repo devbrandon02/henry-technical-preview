@@ -1,5 +1,9 @@
 import { useState } from "react"
-import { CardCourses } from "../styled-components"
+import { CardCourses, LevelCourse } from "../styled-components"
+import StarRatings from 'react-star-ratings';
+import { AiFillSignal } from "react-icons/ai";
+import RankingCourses from "./RankingCourses";
+
 
 export const ListCourses = () => {
   const [courses, setcourses] = useState([
@@ -63,7 +67,9 @@ export const ListCourses = () => {
               <div style={{ paddingLeft: '20px'}}>
                 <h3 style={{fontSize: '18px'}}>{ course.title }</h3>
                 <p style={{ marginTop: '10px', fontSize: '12px', color: '#bcbcba' }}>{ course.description }</p>
-                <div></div>
+                <div style={{ marginTop: "20px"}}>
+                  <RankingCourses sizeStart={"13px"}/>
+                </div>
               </div>
             </CardCourses>
           ))}
