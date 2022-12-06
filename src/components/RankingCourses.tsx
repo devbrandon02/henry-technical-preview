@@ -3,10 +3,12 @@ import StarRatings from "react-star-ratings";
 import { LevelCourse } from "../styled-components";
 
 type Props = {
-  sizeStart: string;
+  sizeStart: string
+  ranking: number
+  difficulty: string
 };
 
-const RankingCourses = ({ sizeStart } : Props) => {
+const RankingCourses = ({ sizeStart, ranking = 0, difficulty } : Props) => {
   return (
 		<div
 			style={{
@@ -17,7 +19,7 @@ const RankingCourses = ({ sizeStart } : Props) => {
 		>
 			<div>
 				<StarRatings
-					rating={2.5}
+					rating={ranking}
 					starRatedColor="#e8c386"
 					numberOfStars={5}
 					name="rating"
@@ -28,7 +30,7 @@ const RankingCourses = ({ sizeStart } : Props) => {
 
 			<LevelCourse style={{ width: "100px", fontSize: "12px" }}>
 				<AiFillSignal />
-				<p>Beginneer</p>
+				<p>{ difficulty }</p>
 			</LevelCourse>
 		</div>
 	);

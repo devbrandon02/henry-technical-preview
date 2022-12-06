@@ -1,79 +1,55 @@
-import { useState } from "react"
-import { CardCourses, LevelCourse } from "../styled-components"
-import StarRatings from 'react-star-ratings';
-import { AiFillSignal } from "react-icons/ai";
+import { useEffect, useState } from "react";
+import { CardCourses, LevelCourse } from "../styled-components";
 import RankingCourses from "./RankingCourses";
+import getAllCourses from "../services/Courses.get";
+import { listCourses, listCoursesAdapter } from "../utilities/Course.types";
 
+export const ListCourses = ({ optionFilter }: any) => {
+	useEffect(() => {
+		getCourses();
+	}, [optionFilter.category || optionFilter.status]);
 
-export const ListCourses = () => {
-  const [courses, setcourses] = useState([
-    {
-      id: 1,
-      title: "Learning strategy: how instead of what",
-      description: "this course is designd for non native English speakers who are interested is advancing their",
-      image: ""
-    },
-    {
-      id: 2,
-      title: "Learning strategy: how instead of what",
-      description: "this course is designd for non native English speakers who are interested is advancing their",
-      image: ""
-    },
-    {
-      id: 3,
-      title: "Learning strategy: how instead of what",
-      description: "this course is designd for non native English speakers who are interested is advancing their",
-      image: ""
-    },
-    {
-      id: 4,
-      title: "Learning strategy: how instead of what",
-      description: "this course is designd for non native English speakers who are interested is advancing their",
-      image: ""
-    },
-    {
-      id: 5,
-      title: "Learning strategy: how instead of what",
-      description: "this course is designd for non native English speakers who are interested is advancing their",
-      image: ""
-    },
-    {
-      id: 6,
-      title: "Learning strategy: how instead of what",
-      description: "this course is designd for non native English speakers who are interested is advancing their",
-      image: ""
-    },
-    {
-      id: 7,
-      title: "Learning strategy: how instead of what",
-      description: "this course is designd for non native English speakers who are interested is advancing their",
-      image: ""
-    }
-  ])
+	const getCourses = async () => {
+		let courses = await getAllCourses(optionFilter.category || "", optionFilter.status);
+    console.log("Courses", courses);
+		setcourses(courses || []);
+	};
 
-  return (
-    <>
-      <div>
-          {courses.map((course) => (
-            <CardCourses>
-              <div style={{ width: '50%', height: '100%' }}>
-                <img
-                  className="courseImg"
-                  src="https://www.infoidiomas.com/wp-content/uploads/series.jpg" 
-                  alt="" 
-                  />
-              </div>
+	const [courses, setcourses] = useState([]);
 
-              <div style={{ paddingLeft: '20px'}}>
-                <h3 style={{fontSize: '18px'}}>{ course.title }</h3>
-                <p style={{ marginTop: '10px', fontSize: '12px', color: '#bcbcba' }}>{ course.description }</p>
-                <div style={{ marginTop: "20px"}}>
-                  <RankingCourses sizeStart={"13px"}/>
-                </div>
-              </div>
-            </CardCourses>
-          ))}
-      </div>
-    </>
-  )
-}
+	return (
+		<>
+			<div style={{ marginTop: '20px' }}>
+				{ courses.length < 1 && "No hay cursos" }
+				{courses?.map((course: listCoursesAdapter) => (
+					<CardCourses>
+						<div style={{ width: "60%", height: "100%" }}>
+							<img className="courseImg" src={course.image} alt="" />
+						</div>
+
+						<div style={{ paddingLeft: "20px", width: "100%" }}>
+							<h3 style={{ fontSize: "18px" }}>{course.title}</h3>
+							<p
+								style={{
+									marginTop: "10px",
+									fontSize: "12px",
+									color: "#bcbcba",
+                  textTransform: 'capitalize'
+								}}
+							>
+								{course.description || "Sin descripcion"}
+							</p>
+							<div style={{ marginTop: "20px" }}>
+								<RankingCourses
+									ranking={course.ranking}
+									difficulty={course.difficulty}
+									sizeStart={"13px"}
+								/>
+							</div>
+						</div>
+					</CardCourses>
+				))}
+			</div>
+		</>
+	);
+};
