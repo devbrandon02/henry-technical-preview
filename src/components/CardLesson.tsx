@@ -1,7 +1,7 @@
 import { AiFillPlayCircle, AiOutlineEllipsis } from "react-icons/ai";
 import { CardLessonLayout } from "../styled-components";
 
-export const CardLesson = () => {
+export const CardLesson = ({ lessons } : any) => {
 	return (
 		<div>
 			<div>
@@ -33,13 +33,12 @@ export const CardLesson = () => {
 						<p style={{ fontSize: "14px", color: "#bcbcba" }}>03:29 mins</p>
             
             <div>
-							<h3>Intro</h3>
+							<h3>{ lessons.title }</h3>
             </div>
 
 						<div>
 							<p style={{ fontSize: "14px", color: "#bcbcba" }}>
-								Meet your teacher and see what you are going to lean in this
-								course
+								{ lessons.description }
 							</p>
 						</div>
 					</div>

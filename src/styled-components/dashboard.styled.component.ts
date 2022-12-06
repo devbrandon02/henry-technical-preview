@@ -21,6 +21,11 @@ export const CardCourses = styled.div`
   border-radius: 10px;
   padding: 10px;
   display: flex;
+  cursor: pointer;
+
+  &:hover {
+    border: 1px solid #E3E0DF;
+  }
 `
 
 export const LevelCourse  = styled.div`

@@ -4,7 +4,7 @@ import RankingCourses from "./RankingCourses";
 import getAllCourses from "../services/Courses.get";
 import { listCourses, listCoursesAdapter } from "../utilities/Course.types";
 
-export const ListCourses = ({ optionFilter }: any) => {
+export const ListCourses = ({ optionFilter, setdetailCourse, detailCourse }: any) => {
 	useEffect(() => {
 		getCourses();
 	}, [optionFilter.category || optionFilter.status]);
@@ -22,7 +22,10 @@ export const ListCourses = ({ optionFilter }: any) => {
 			<div style={{ marginTop: '20px' }}>
 				{ courses.length < 1 && "No hay cursos" }
 				{courses?.map((course: listCoursesAdapter) => (
-					<CardCourses>
+					<CardCourses onClick={() => setdetailCourse({
+            ...detailCourse,
+            id: course.id
+          })}>
 						<div style={{ width: "60%", height: "100%" }}>
 							<img className="courseImg" src={course.image} alt="" />
 						</div>
